@@ -1,13 +1,4 @@
-/**
- * This Source Code Form is subject to the terms of the Mozilla Public License,
- * v. 2.0. If a copy of the MPL was not distributed with this file, You can
- * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
- * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
- *
- * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
- * graphic logo is a trademark of OpenMRS Inc.
- */
-package org.openmrs.module.indicators.api;
+package org.openmrs.module.indicators;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,9 +10,9 @@ import org.openmrs.api.UserService;
 import org.openmrs.module.indicators.Item;
 import org.openmrs.module.indicators.api.dao.IndicatorsDao;
 import org.openmrs.module.indicators.api.impl.IndicatorsServiceImpl;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 /**
  * This is a unit test, which verifies logic in IndicatorsService. It doesn't extend
