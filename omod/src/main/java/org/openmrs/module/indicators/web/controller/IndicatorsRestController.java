@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.openmrs.module.Module;
+import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.indicators.api.IndicatorsService;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
@@ -37,5 +39,21 @@ public class IndicatorsRestController extends BaseRestController {
 			row.put("dateCreated", concept.getDateCreated());
 			return row;
 		}).collect(Collectors.toList());
+	}
+
+	@RequestMapping(value = "/reporting/status", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> reportingStatus() {
+		Map<String, Object> out = new LinkedHashMap<String, Object>();
+
+		Module reporting = ModuleFactory.getStartedModuleById("reporting");
+		Module reportingRest = ModuleFactory.getStartedModuleById("reportingrest");
+
+		out.put("reportingStarted", reporting != null);
+		out.put("reportingVersion", reporting != null ? reporting.getVersion() : null);
+		out.put("reportingRestStarted", reportingRest != null);
+		out.put("reportingRestVersion", reportingRest != null ? reportingRest.getVersion() : null);
+
+		return out;
 	}
 }
